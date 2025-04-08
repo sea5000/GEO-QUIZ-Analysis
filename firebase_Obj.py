@@ -351,25 +351,25 @@ class GeoPull:
         if test == 'us':
             if filter in filterOptions:
                 if filter == 'filter-us':
-                    title = 'American PCA Fesults in the US'
+                    self.title = 'American PCA Fesults in the US'
                 elif filter == 'filter-europe':
-                    title = 'European PCA Results in the US'
+                    self.title = 'European PCA Results in the US'
             else:
-                title = 'Combined PCA Results in the US'
+                self.title = 'Combined PCA Results in the US'
         elif test == 'europe':
             if filter in filterOptions:
                 if filter == 'filter-us':
-                    title = 'American PCA Fesults in Europe'
+                    self.title = 'American PCA Fesults in Europe'
                 elif filter == 'filter-europe':
-                    title = 'European PCA Results in Europe'
+                    self.title = 'European PCA Results in Europe'
             else:
-                title = 'Combined PCA Results in the US'
+                self.title = 'Combined PCA Results in the US'
         # Add a legend for the clusters
         legend_labels = [f'Cluster {i+1}' for i in range(len(set(self.kMeansV.labels_)))]
         handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=scatter.cmap(scatter.norm(i)), markersize=10) for i in range(len(set(self.kMeansV.labels_)))]
         plt.legend(handles, legend_labels, title="Clusters", loc="best")
         # Add titles and labels
-        plt.title(title)
+        plt.title(self.title)
         plt.xlabel('Principal Component 1')
         plt.ylabel('Principal Component 2')
         # Add labels to the points
@@ -440,8 +440,31 @@ class GeoPull:
         #         self.initData()
         # if self.FreqTable.get(test) == None:
         #     self.initData()
-
+        ET.register_namespace("", "http://www.w3.org/2000/svg")
         if kMeans:
+            if test =="europe":
+                if filter == "filter-us":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "PCA Results of American Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "on European Geography"
+                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="7%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="alignment-baseloe: central; text-anchor: middle;" x="50%" y="12%" id="TitleB1"></ns0:tspan>'
+                elif filter=="filter-europe":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "PCA Results of American Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "on European Gography"
+            elif test == "us":
+                if filter == "filter-europe":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "PCA Results of Eurpean Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "on American Gography"
+                elif filter == "filter-us":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "PCA Results of European Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "on American Geography"
             if self.kMeansV == None:
                 #print('kMeansV == None')
                 raise ValueError("kMeansV == NONE -sea")
@@ -456,6 +479,29 @@ class GeoPull:
             # Map states to their corresponding colors
             state_color_map = {state: cluster_colors[cluster] for state, cluster in state_cluster_map.items()}
         else:
+            if test =="europe":
+                if filter == "filter-us":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "How Often Americans"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on European Geography"
+                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="7%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="alignment-baseloe: central; text-anchor: middle;" x="50%" y="12%" id="TitleB1"></ns0:tspan>'
+                elif filter=="filter-europe":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "How Often Europeans"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on European Geography"
+            elif test == "us":
+                if filter == "filter-europe":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "How Often Europeans"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on American Geography"
+                elif filter == "filter-us":
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = "How Often Europeans"
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on American Geography"
             # Define a custom red-yellow-green colormap
             colors = ['#FF0000', '#FFFF00', '#289800']  # Red, Yellow, Green
             if relative:
@@ -539,14 +585,14 @@ class GeoPull:
 
             if test == 'us':
                 if not kMeans:
-                    tree = ET.parse('us-scale.svg')
+                    tree = ET.parse('us-scale-text.svg')
                 else:
-                    tree = ET.parse('us.svg')
+                    tree = ET.parse('us-text.svg')
             elif test == 'europe':
                 if not kMeans:
-                    tree = ET.parse('europe-scale.svg')
+                    tree = ET.parse('europe-scale-text.svg')
                 else:
-                    tree = ET.parse('europe.svg')
+                    tree = ET.parse('europe-text.svg')
             root = tree.getroot()
             # for element in root.iter():
             #     print(element.tag, element.attrib)
@@ -554,9 +600,17 @@ class GeoPull:
             id_to_color = state_color_map
             #print(id_to_color.keys())
             # Iterate through all elements in the SVG
+            #TestTitle = "Lets get going"
             for element in root.iter():
                 element_id = element.get('id')
                 #print(element_id)
+                #if str(element_id) == 'TitleA':
+                #    element.set('transform',f'matrix(4,0,0,4,{355-(len(TestTitle)*27)},40)')
+                if str(element_id) == 'TitleA':
+                    print(TitleB1.text)
+                    print(TitleB2.text)
+                    element.append(TitleB1)
+                    element.append(TitleB2)
                 if str(element_id) == 'min' and relative:
                     element.text = str(minimum)
                 if str(element_id) == 'max' and relative:

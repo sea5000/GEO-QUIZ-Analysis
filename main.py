@@ -15,12 +15,17 @@ for k, i in data_dict.items():
     i['quizResults'] = eval(i['quizResults'])
 geo.dataRaw = data_dict
 
-# geo.PCAOutput(test='europe', name='4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-# geo.PCAOutput(test='europe', name='4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
-# geo.PCAOutput(test='us', name='4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-# geo.PCAOutput(test='us', name='4-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+# geo.writeMap(test='us',name='')
+geo.writeMap(test='europe', name='./PCA/4-4-25-EU-EUMAP', w=True, filter='filter-europe')
+geo.writeMap(test='us', name='./PCA/4-4-25-US-USMAP', w=True, filter='filter-us')
 
-# geo.PCAOutput(test='europe', name='4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-# geo.PCAOutput(test='europe', name='4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
-# geo.PCAOutput(test='us', name='4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='us', name='4-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=True)
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
+geo.PCAOutput(test='us', name='test', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+#geo.writeMap(test='us',name='test')
