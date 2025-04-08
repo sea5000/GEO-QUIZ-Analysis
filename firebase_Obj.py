@@ -256,14 +256,14 @@ class GeoPull:
                     output = self.FreqTable[filter][test]
             else:
                 outputData = self.FreqTable[filter][test]
-            print('Outputted')
+            #print('Outputted')
         else:
             if self.FreqTable.get(test) == None:
                 self.FreqTable[test] = self.frequencyTable(test=test)
                 output = self.FreqTable[test]
             else:
                 outputData = self.FreqTable[test]
-            print(f'Outputted with param test: {test}, filter: {filter}')
+        #print(f'Outputted with param test: {test}, filter: {filter}')
 
         # #elif test == 'filter' and filter != None:
         # if filter != None and filter in filterOptions:
@@ -308,7 +308,7 @@ class GeoPull:
             #     outputData = self.FreqTable[filter]
             # else:
             outputData = self.FreqTable[filter][test]
-            print("Output Set to filter FREQTABLE")
+            #print("Output Set to filter FREQTABLE")
         else:
             # if self.FreqTable.get(test) == None:
             #     self.FreqTable[test] = self.frequencyTable(test=test)
@@ -351,7 +351,7 @@ class GeoPull:
         if test == 'us':
             if filter in filterOptions:
                 if filter == 'filter-us':
-                    self.title = 'American PCA Fesults in the US'
+                    self.title = 'American PCA Results in the US'
                 elif filter == 'filter-europe':
                     self.title = 'European PCA Results in the US'
             else:
@@ -359,7 +359,7 @@ class GeoPull:
         elif test == 'europe':
             if filter in filterOptions:
                 if filter == 'filter-us':
-                    self.title = 'American PCA Fesults in Europe'
+                    self.title = 'American PCA Results in Europe'
                 elif filter == 'filter-europe':
                     self.title = 'European PCA Results in Europe'
             else:
@@ -419,14 +419,14 @@ class GeoPull:
                     data = self.FreqTable[filter][test]
             else:
                 data = self.FreqTable[filter][test]
-            print('Outputted')
+            # print('Outputted')
         else:
             if self.FreqTable.get(test) == None:
                 self.FreqTable[test] = self.frequencyTable(test=test)
                 data = self.FreqTable[test]
             else:
                 data = self.FreqTable[test]
-            print('Outputted')
+            # print('Outputted')
         
         # if filter == None and test in validOptions:
             # if self.FreqTable.get(test) == None:
@@ -444,26 +444,26 @@ class GeoPull:
         if kMeans:
             if test =="europe":
                 if filter == "filter-us":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "PCA Results of American Knowledge"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on European Geography"
-                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="7%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="alignment-baseloe: central; text-anchor: middle;" x="50%" y="12%" id="TitleB1"></ns0:tspan>'
+                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="2%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="fill:black; alignment-baseloe: central; text-anchor: middle;" x="50%" y="6%" id="TitleB1"></ns0:tspan>'
                 elif filter=="filter-europe":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "PCA Results of American Knowledge"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on European Gography"
             elif test == "us":
                 if filter == "filter-europe":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "PCA Results of Eurpean Knowledge"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on American Gography"
                 elif filter == "filter-us":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "PCA Results of European Knowledge"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on American Geography"
             if self.kMeansV == None:
                 #print('kMeansV == None')
@@ -481,26 +481,26 @@ class GeoPull:
         else:
             if test =="europe":
                 if filter == "filter-us":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "How Often Americans"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on European Geography"
-                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="7%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="alignment-baseloe: central; text-anchor: middle;" x="50%" y="12%" id="TitleB1"></ns0:tspan>'
+                    #self.title = r'<ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="" x="50%" y="2%" id="TitleB1"></ns0:tspan><ns0:tspan xmlns:ns0="http://www.w3.org/2000/svg" style="fill:black; alignment-baseloe: central; text-anchor: middle;" x="50%" y="6%" id="TitleB1"></ns0:tspan>'
                 elif filter=="filter-europe":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "How Often Europeans"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on European Geography"
             elif test == "us":
                 if filter == "filter-europe":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "How Often Europeans"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on American Geography"
                 elif filter == "filter-us":
-                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = "How Often Europeans"
-                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="alignment-baseline: central; text-anchor: middle;")
+                    TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on American Geography"
             # Define a custom red-yellow-green colormap
             colors = ['#FF0000', '#FFFF00', '#289800']  # Red, Yellow, Green
@@ -582,7 +582,6 @@ class GeoPull:
 
             #print(test)
         if w:
-
             if test == 'us':
                 if not kMeans:
                     tree = ET.parse('us-scale-text.svg')
@@ -607,8 +606,8 @@ class GeoPull:
                 #if str(element_id) == 'TitleA':
                 #    element.set('transform',f'matrix(4,0,0,4,{355-(len(TestTitle)*27)},40)')
                 if str(element_id) == 'TitleA':
-                    print(TitleB1.text)
-                    print(TitleB2.text)
+                    # print(TitleB1.text)
+                    # print(TitleB2.text)
                     element.append(TitleB1)
                     element.append(TitleB2)
                 if str(element_id) == 'min' and relative:
@@ -627,6 +626,7 @@ class GeoPull:
                     element.set('style', ';'.join(f'{k}:{v}' for k, v in style_dict.items()))
             #if filter != None and filter in filterOptions:
             tree.write(f'{name}.svg')
+        print(f'Outputted with param test: {test}, filter: {filter}')
 
         
     # def freqMap():

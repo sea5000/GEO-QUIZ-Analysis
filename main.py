@@ -16,16 +16,20 @@ for k, i in data_dict.items():
 geo.dataRaw = data_dict
 
 # geo.writeMap(test='us',name='')
-geo.writeMap(test='europe', name='./PCA/4-4-25-EU-EUMAP', w=True, filter='filter-europe')
-geo.writeMap(test='us', name='./PCA/4-4-25-US-USMAP', w=True, filter='filter-us')
+geo.writeMap(test='europe', name='./PCA/4-4-25-US-EUMAP', w=True, filter='filter-us',randomState=2)
+geo.writeMap(test='europe', name='./PCA/4-4-25-EU-EUMAP', w=True, filter='filter-europe',randomState=2)
+geo.writeMap(test='us', name='./PCA/4-4-25-EU-USMAP', w=True, filter='filter-europe',randomState=2)
+geo.writeMap(test='us', name='./PCA/4-4-25-US-USMAP', w=True, filter='filter-us',randomState=2)
 
-geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
 
-geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False)
-geo.PCAOutput(test='us', name='test', w=True, filter='filter-europe',kMeansNum=8, showPlot=False)
+
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='europe', name='./PCA/4-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name='./PCA/4-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name='test', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
 #geo.writeMap(test='us',name='test')
