@@ -71,10 +71,10 @@ class GeoPull:
         for doc in docs:
             self.dataRaw.append(doc.to_dict())
         for k, i in enumerate(self.dataRaw):
+            self.dataRaw[k]['time'] = str(dt.datetime.fromtimestamp(i['time']/1000.0).strftime('%Y-%m-%d %H:%M:%S'))
             if len(i) == 4:
                 scoreEurope = 0
                 scoreUS = 0
-                i['time'] = dt.datetime.fromtimestamp(i['time']/1000.0).strftime('%Y-%m-%d %H:%M:%S')
                 for qN in i['quizResults'].keys():
                     if int(qN) <= 19:
                         if i['quizResults'][qN]['correct'] == True:
@@ -82,7 +82,7 @@ class GeoPull:
                     if int(qN) > 19:
                         if i['quizResults'][qN]['correct'] == True:
                             scoreUS += 1
-                i['score'] = [scoreEurope,scoreUS]
+                self.dataRaw[k]['score'] = [scoreEurope,scoreUS]
 
         #return self.dataRaw # returns the data pulled from firestore
         if w and name==None:
@@ -105,16 +105,17 @@ class GeoPull:
         if name == None:
             raise ValueError("Name cannot be None.")
         if type == "csv":
-            with open(f'{name}.csv', 'w', newline='') as csv_file:
+            with open(f'{name}.csv', 'w', newline='', encoding='utf-8-sig') as csv_file:
                 csv_writer = csv.writer(csv_file)
                 
                 # Write the header
-                header = ["name","origin","time","score","quizResults","QCount"]
+                header = ["name","origin","time","score-europe","score-us","QCount","quizResults"]
                 csv_writer.writerow(header)
                 
                 # Write the rows
                 for row in self.dataRaw:
                     if len(row.values())==4:
+                        print("Wrote Scores")
                         scoreEurope = 0
                         scoreUS = 0
                         for qN in row['quizResults'].keys():
@@ -124,15 +125,21 @@ class GeoPull:
                             if int(qN) > 19:
                                 if row['quizResults'][qN]['correct'] == True:
                                     scoreUS += 1
-                            row['score'] = [scoreEurope,scoreUS]
+                            row['score-europe'] = scoreEurope
+                            row['score-us'] = scoreUS
+                    else:
+                        scoreEurope, scoreUS = row['score']
+                        row['score-europe'] = scoreEurope
+                        row['score-us'] = scoreUS
                 for row in self.dataRaw:
                     writeRow = []
                     writeRow.append(row['name'])
                     writeRow.append(row['origin'])
                     writeRow.append(row['time'])
-                    writeRow.append(row['score'])
-                    writeRow.append(row['quizResults'])
+                    writeRow.append(row['score-europe'])
+                    writeRow.append(row['score-us'])
                     writeRow.append(len(row['quizResults']))
+                    writeRow.append(row['quizResults'])
 
                     csv_writer.writerow(writeRow)
         elif type == "json":
@@ -146,7 +153,7 @@ class GeoPull:
         else:
             if verbose:
                 for k, i in self.dataRaw.items():
-                    print(k,i['name'],"-",i['origin'],"-",i['time'],"-",i['score'])
+                    print(k,i['name'],"-",i['origin'],"-",i['time'],"-",i['score-europe'],"-",i['score-us'])
                     sys.stdout.flush()
 
             var = input("Rows to delete: ")
@@ -581,6 +588,10 @@ class GeoPull:
                     style_dict['fill'] = id_to_color[element_id]
                     element.set('style', ';'.join(f'{k}:{v}' for k, v in style_dict.items()))
             tree.write(f'{name}.svg')
+
+        # cairosvg.svg2png(url=f'{name}.svg', write_to=f'{name}-MAP.png')
+
+
         print(f'Outputted map {name} with param test: {test}, filter: {filter}')
         print("================================================================")
 
