@@ -50,6 +50,9 @@ class GeoPull:
                 self.initData(test=test, filter=filter)
         # elif self.FreqTable.get(test) == None or self.FreqTable.get(test) == {}:
             # self.initData(test=test, filter=filter)
+        elif filter == None:
+            if self.FreqTable.get('combined') == None or self.FreqTable.get('combined') == {}:
+                self.initData(test=test, filter=filter)
         elif filter == 'cFilter':
             if self.FreqTable.get(filter) == None:# or self.FreqTable.get(filter).get(test) == {}:
                 self.initData(test=test, filter=filter, cFilter=cFilter)
@@ -245,6 +248,9 @@ class GeoPull:
             self.FreqTable['europe'] = {}
         if self.FreqTable.get('us') == None:
             self.FreqTable['us'] = {}
+        if self.FreqTable.get('combined') == None:
+            self.FreqTable['combined'] = {}
+                
         if cFilter != None and filter=='cFilter':
             if self.FreqTable.get('cFilter') == None:
                 self.FreqTable['cFilter'] = {'us':{},'europe':{}}
@@ -257,6 +263,8 @@ class GeoPull:
                     self.FreqTable['filter-europe'][test] = self.frequencyTable(test,filter=filter)
                 elif cFilter != None and filter == 'cFilter':
                     self.FreqTable['cFilter'][test][cFilter] = self.frequencyTable(test,filter=filter,cFilter=cFilter)
+            elif filter == None:
+                self.FreqTable['combined'][test] = self.frequencyTable(test)
 
     def writeFreqTable(self, test='europe', name='Output', filter:str=None, cFilter:str=None):
         validOptions= {'europe','us'}
@@ -286,8 +294,13 @@ class GeoPull:
             else:
                 output = self.FreqTable[filter][test]
         else:
-            if self.FreqTable.get(test) == None:
-                # self.FreqTable[test] = self.frequencyTable(test=test)
+            if filter == None and self.FreqTable.get('combined') == None:
+                self.FreqTable['combined'][test] = self.frequencyTable(test=test)
+                output = self.FreqTable['combined'][test]
+            elif filter == None and self.FreqTable.get('combined') != None:
+                output = self.FreqTable['combined'][test]
+            elif self.FreqTable.get(test) == None:
+                self.FreqTable[test] = self.frequencyTable(test=test)
                 output = self.FreqTable[test]
             else:
                 output = self.FreqTable[test]
@@ -418,6 +431,12 @@ class GeoPull:
                     data = self.FreqTable[filter][test]
             else:
                 data = self.FreqTable[filter][test]
+        elif filter == None:
+            if self.FreqTable.get('combined') == None:
+                self.FreqTable['combined'][test] = self.frequencyTable(test=test)
+                data = self.FreqTable['combined'][test]
+            else:
+                data = self.FreqTable['combined'][test]
         else:
             if self.FreqTable.get(test) == None:
                 self.FreqTable[test] = self.frequencyTable(test=test)
@@ -490,6 +509,11 @@ class GeoPull:
                     TitleB1.text = f"How Often People From {cFilter}"
                     TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on European Geography"
+                elif filter==None:
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = f"How Often People"
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on European Geography"
             elif test == "us":
                 if filter == "filter-europe":
                     TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
@@ -504,6 +528,11 @@ class GeoPull:
                 elif filter=="cFilter":
                     TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB1.text = f"How Often People From {cFilter}"
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on American Geography"
+                elif filter==None:
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = f"How Often People"
                     TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "are Correct on American Geography"
             # Define a custom red-yellow-green colormap
@@ -542,7 +571,7 @@ class GeoPull:
             else:
                 clustersC = set()
                 clustersD = []
-                #print(data)
+                # print(data)
                 for i in range(len(data[0])-4):
                     clustersC.add(data[i][len(data[0])-1]*100)
                     clustersD.append(str(int(data[i][len(data[0])-1]*100)))
@@ -592,7 +621,7 @@ class GeoPull:
         # cairosvg.svg2png(url=f'{name}.svg', write_to=f'{name}-MAP.png')
 
 
-        print(f'Outputted map {name} with param test: {test}, filter: {filter}')
+        print(f'Outputted map "{name}" with param test: "{test}", filter: "{filter}"')
         print("================================================================")
 
 
