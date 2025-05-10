@@ -5,8 +5,8 @@ os.environ["LOKY_MAX_CPU_COUNT"] = "4"  # Replace 4 with the number of logical c
 
 geo = GeoPull()
 data = []
-
-with open('./24-4-25/24-4-25-DataPull.csv', 'r', newline='', encoding="utf-8-sig") as csvfile:
+date = "5-5-25"
+with open(f'./{date} Data/{date}-DataPull.csv', 'r', newline='', encoding="utf-8-sig") as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         data.append(row)
@@ -15,20 +15,24 @@ for k, i in data_dict.items():
     i['quizResults'] = eval(i['quizResults'])
 geo.dataRaw = data_dict
 
-# geo.writeMap(test='europe', name='./24-4-25/Austria/24-4-25-Austria-EUMAP', w=True, filter='cFilter',cFilter='Austria',randomState=2)
-# geo.writeMap(test='us', name='./24-4-25/Austria/24-4-25-Austria-USMAP', w=True, filter='cFilter',cFilter='Austria',randomState=2)
-# geo.PCAOutput(test='europe', name='./24-4-25/Austria/24-4-25-PCA-Austria-EUMAP', w=True, filter='cFilter',cFilter='Austria',kMeansNum=8, showPlot=False,randomState=2)
-# geo.PCAOutput(test='us', name='./24-4-25/Austria/24-4-25-PCA-Austria-USMAP', w=True, filter='cFilter',cFilter='Austria',kMeansNum=8, showPlot=False,randomState=2)
+# geo.writeMap(test='europe', name=f'./{date} Data/Austria/{date}-Austria-EUMAP', w=True, filter='cFilter',cFilter='Austria',randomState=2)
+# geo.writeMap(test='us', name=f'./{date} Data/Austria/{date}-Austria-USMAP', w=True, filter='cFilter',cFilter='Austria',randomState=2)
+# geo.PCAOutput(test='europe', name=f'./{date} Data/Austria/{date}-PCA-Austria-EUMAP', w=True, filter='cFilter',cFilter='Austria',kMeansNum=8, showPlot=False,randomState=2)
+# geo.PCAOutput(test='us', name=f'./{date} Data/Austria/{date}-PCA-Austria-USMAP', w=True, filter='cFilter',cFilter='Austria',kMeansNum=8, showPlot=False,randomState=2)
 
-# geo.writeMap(test='europe', name='./24-4-25/Combined/24-4-25-US-EUMAP', w=True, filter='filter-us',randomState=2)
-# geo.writeMap(test='europe', name='./24-4-25/Combined/24-4-25-EU-EUMAP', w=True, filter='filter-europe',randomState=2)
-# geo.writeMap(test='us', name='./24-4-25/Combined/24-4-25-US-USMAP', w=True, filter='filter-us',randomState=2)
-# geo.writeMap(test='us', name='./24-4-25/Combined/24-4-25-EU-USMAP', w=True, filter='filter-europe',randomState=2)
-geo.writeMap(test='us', name='./24-4-25/Combined/24-4-25-Combined-USMAP', w=True,randomState=2)
-geo.writeMap(test='europe', name='./24-4-25/Combined/24-4-25-Combined-EUMAP', w=True,randomState=2)
+geo.writeMap(test='europe', name=f'./{date} Data/Correctness/{date}-US-EUMAP', w=True, filter='filter-us',randomState=2)
+geo.writeMap(test='europe', name=f'./{date} Data/Correctness/{date}-EU-EUMAP', w=True, filter='filter-europe',randomState=2)
+geo.writeMap(test='us', name=f'./{date} Data/Correctness/{date}-US-USMAP', w=True, filter='filter-us',randomState=2)
+geo.writeMap(test='us', name=f'./{date} Data/Correctness/{date}-EU-USMAP', w=True, filter='filter-europe',randomState=2)
+geo.writeMap(test='us', name=f'./{date} Data/Combined/{date}-Combined-USMAP', w=True,randomState=2)
+geo.writeMap(test='europe', name=f'./{date} Data/Combined/{date}-Combined-EUMAP', w=True,randomState=2)
 
 
-# geo.PCAOutput(test='europe', name='./24-4-25/Combined/24-4-25-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
-# geo.PCAOutput(test='europe', name='./24-4-25/Combined/24-4-25-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
-# geo.PCAOutput(test='us', name='./24-4-25/Combined/24-4-25-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
-# geo.PCAOutput(test='us', name='./24-4-25/Combined/24-4-25-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='europe', name=f'./{date} Data/PCA/{date}-PCA-US-EUMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='europe', name=f'./{date} Data/PCA/{date}-PCA-EU-EUMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name=f'./{date} Data/PCA/{date}-PCA-US-USMAP', w=True, filter='filter-us',kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name=f'./{date} Data/PCA/{date}-PCA-EU-USMAP', w=True, filter='filter-europe',kMeansNum=8, showPlot=False,randomState=2)
+
+geo.writeMap(test='europe', name=f'./{date}-Combined-EUMAP', w=True,randomState=2)
+geo.PCAOutput(test='europe', name=f'./{date} Data/PCA/{date}-PCA-COMBINED-EUMAP', w=True, kMeansNum=8, showPlot=False,randomState=2)
+geo.PCAOutput(test='us', name=f'./{date} Data/PCA/{date}-PCA-COMBINED-USMAP', w=True, kMeansNum=8, showPlot=False,randomState=2)

@@ -74,7 +74,7 @@ class GeoPull:
         for doc in docs:
             self.dataRaw.append(doc.to_dict())
         for k, i in enumerate(self.dataRaw):
-            self.dataRaw[k]['time'] = str(dt.datetime.fromtimestamp(i['time']/1000.0).strftime('%Y-%m-%d %H:%M:%S'))
+            self.dataRaw[k]['time'] = str(dt.datetime.fromtimestamp(int(i['time'])/1000.0).strftime('%Y-%m-%d %H:%M:%S'))
             if len(i) == 4:
                 scoreEurope = 0
                 scoreUS = 0
@@ -330,9 +330,12 @@ class GeoPull:
                 outputData = self.FreqTable['cFilter'][test][cFilter]
             else:
                 outputData = self.FreqTable[filter][test]
+        elif filter == None:
+            outputData = self.FreqTable['combined'][test]
         else:
             outputData = self.FreqTable[test]
         df = pd.DataFrame(outputData,index=None)#, columns=outputData[0])
+        # print(df.head())
         df.drop(df.columns[0], axis=1, inplace=True)  # Drop the first column
         df.drop(df.columns[-3:], axis=1, inplace=True)
 
@@ -465,6 +468,12 @@ class GeoPull:
                     TitleB1.text = f"PCA Results of {cFilter} Knowledge"
                     TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on European Gography"
+                elif filter == None:
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = f"PCA Results of Participant's Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on European Geography"
+                
             elif test == "us":
                 if filter == "filter-europe":
                     TitleB1 = ET.Element("tspan", x="50%", y='7%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
@@ -481,6 +490,11 @@ class GeoPull:
                     TitleB1.text = f"PCA Results of {cFilter} Knowledge"
                     TitleB2 = ET.Element("tspan", x="50%", y='12%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
                     TitleB2.text = "on American Geography"
+                elif filter == None:
+                    TitleB1 = ET.Element("tspan", x="50%", y='2%', id='TitleB1', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB1.text = f"PCA Results of Participant's Knowledge"
+                    TitleB2 = ET.Element("tspan", x="50%", y='6%', id='TitleB2', style="fill:black; alignment-baseline: central; text-anchor: middle;")
+                    TitleB2.text = "are Correct on American Geography"
             if self.kMeansV == None:
                 raise ValueError("kMeansV == NONE -sea")
             num_clusters = len(set(self.kMeansV.labels_))
